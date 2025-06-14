@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int brokenCalc(int s, int t) {
+        int ct = 0;
+        // greedy go reverse
+        while(t>s)
+        {
+            if(t%2==0)
+            {
+                t=t/2;
+                ct++;
+            }
+            else{
+                // yha do operation ho rha hai /2 and +1 isliye ct+=2
+                t = t/2 +1;
+                ct+=2;
+            }
+        }
+        /* simple logic 5 is greater then 4 toh subract hi hoga multiply toh ho nhi skta*/
+        if(t<s)
+        {
+            ct+=s-t;
+        }
+        return ct;
+    }
+};
+jb 10^9 ayaa toh binary search ya recursive ka socho divide by kuch jisse log mein aa jaya complexity
