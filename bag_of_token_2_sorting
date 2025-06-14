@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int bagOfTokensScore(vector<int>& tokens, int power) {
+        int n = tokens.size();
+        sort(tokens.begin(), tokens.end());
+        int s = 0, i = 0, j = n - 1, maxi = 0;
+        while (i <= j) {
+            if (power >= tokens[i]) {
+                s++;
+                power -= tokens[i];
+                i++;
+                maxi = max(maxi, s);
+            } else if (s > 0) {
+                s--;
+                power += tokens[j];
+                j--;
+            } else {
+                break;
+            }
+        }
+        return maxi;
+    }
+};
+/* in this question at last any order then you can easily do sorting and for maximum you can apply two pointer approach
