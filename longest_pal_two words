@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    int longestPalindrome(vector<string>& words) {
+ we can also use string in map and treat as sinlge no this is catch then easily we can solve it
+        map<string, int> freq;
+        int length = 0;
+        bool hasCenter = false;
+
+        for (string& word : words) {
+            string rev = word;
+            reverse(rev.begin(), rev.end());
+            if (freq[rev] > 0) {
+                length += 4;
+                freq[rev]--;
+            } else {
+                freq[word]++;
+            }
+        }
+
+        for (auto& it : freq) {
+            string word = it.first;
+            if (word[0] == word[1] && it.second > 0) {
+                hasCenter = true;
+                break;
+            }
+        }
+
+        if (hasCenter) length += 2;
+        return length;
+    }
+};
