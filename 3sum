@@ -1,0 +1,48 @@
+class Solution {
+public:
+
+    void sum2(int targ,vector<int>&nums,int idx,vector<vector<int>>&ans,int n)
+    {
+        int i = idx+1;
+        int j = n-1;
+
+        while(i<j)
+        {
+            if(nums[i]+nums[j]>targ)
+            {
+                 j--;
+            }
+            else if(nums[i]+nums[j]<targ){
+                i++;
+            }
+            else{
+                ans.push_back({-targ,nums[i],nums[j]});
+                yha bhi duplicate km kar rhna hai
+                while(i<j && nums[i]==nums[i+1])i++;
+                while(i<j && nums[j]==nums[j-1])j--;
+                i++;
+                j--;
+
+            }
+
+        }
+
+
+    }
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        vector<vector<int>>ans;
+       approach -> nums2 + nums3 = -nums1 convert karo 2sum mein
+        int n = nums.size();
+        for(int i = 0; i<n-2; i++)
+        {
+          yha ye dekh rhna hai duplicate element dobar call na ho jaya jaise 1 1 toh pehle 1 ka liye call kar liye hai toh dusra 1 ko skip karna hoga
+            if(i!=0 && nums[i]==nums[i-1]) continue;
+            int targ = -1*nums[i];
+            sum2(targ,nums,i,ans,n);
+
+        }
+
+        return ans;
+    }
+};
